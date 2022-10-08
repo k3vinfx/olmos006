@@ -1,0 +1,63 @@
+
+<div class="container">
+    <div class="reserva-list"> 
+    <mat-form-field appearance="outline" class="example-half-width">
+        <input type="text" matInput id="filterap" name="filterap" #filterap (keyup)="applyFilter(filterap.value)" placeholder="Busqueda por apellido">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>   
+        <mat-button-toggle-group #group="matButtonToggleGroup" value="false">
+            <mat-button-toggle value="true" (change)="getModeRes(mode,true)" aria-label="Text align left">
+              Reserva Confirmada
+            </mat-button-toggle>
+            <mat-button-toggle value="false" (change)="getModeRes(mode,false)" aria-label="Text align center">
+              Reserva Tomada
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+  </div>
+    
+    <div class="reserva-list">     
+            <div class="reserva-list-hor">
+                <div *ngIf="reservas.length>0">
+                    <div class="card" *ngFor="let reserva of reservas">
+                        <div class="usuario">
+                            <h1>{{reserva.petitorio.nombre}} {{reserva.petitorio.apellido}}</h1>
+                            <div class="usuario-inf">
+                                <h6>{{reserva.petitorio.ci}}</h6>
+                                <h6>{{reserva.petitorio.email}}</h6>
+                            </div>
+                            <div class="usuario-inf">
+                                <label><input type="checkbox" disabled="true" [checked]="reserva.voucher"/>Reserva pagada</label>
+                                <mat-form-field appearance="fill"  style="background-color: #8ed1a2; font-size: 12px; border-radius: 20px;">
+                                    <mat-label>Invitados</mat-label>
+                                    <mat-select [(value)]="reserva.invitados[0].nombreapellido">
+                                        <mat-option disabled="true" [value]="invitado.nombreapellido" *ngFor="let invitado of reserva.invitados">{{invitado.nombreapellido}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="option">
+                                <button type="button" (click)="openDialogRes(reserva)" class="btn">Revisar reserva</button>
+                                <button type="button" (click)="openDialogEdit(reserva)" *ngIf="mode=='admin'" class="btn"><mat-icon>edit</mat-icon></button>
+                                <button type="button"(click)="openDialogDelete(reserva)" *ngIf="mode=='admin'" class="btn"><mat-icon>delete</mat-icon></button>
+                            </div>
+                            
+                        </div>
+                        <div class="habitacion">
+                            <h1>{{reserva.habitacion.nombre}}</h1>
+                            <h3>Capacidad: {{reserva.habitacion.capacidad}} personas</h3>
+                            <h3>Categoría:  {{reserva.habitacion.categoria}}</h3>
+                            <button type="button" (click)="openDialogHab(reserva.habitacion)" class="btn2">Revisar Habitación</button>
+                        </div>
+            
+                    </div>
+                </div>
+                <div *ngIf="reservas.length<=0">
+                    <div class="notthere">
+                        <h1> No existen registros por el momento</h1>
+                    </div>
+                </div>
+            </div>       
+    </div>
+</div>
+
+
+

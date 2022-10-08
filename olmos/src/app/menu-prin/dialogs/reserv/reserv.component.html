@@ -1,0 +1,123 @@
+<div class="main">
+    <div class="tit-div">
+        <div class="title">
+            <h1>Reserva ID: {{reservaShortID(data.reserva.id)}}</h1> 
+        </div>
+        <div class="disp">
+            <h1>Confirmada</h1>
+        </div>
+        
+    </div>
+    
+   
+    <div class="divider">
+        <div class="card">
+            <div class="usuario">
+                <h1>Datos de usuario:</h1>
+                <div class="usuario-info">
+                    <h3>Nombre: {{data.reserva.petitorio.nombre}}</h3>
+                    <h3>Apellidos: {{data.reserva.petitorio.apellido}}</h3>
+                    <h3>CI: {{data.reserva.petitorio.ci}}</h3>
+                    <h3>Email: {{data.reserva.petitorio.email}}</h3>
+                </div>
+                <h1>Pago de reserva:</h1>
+                <div class="usuario-pago">
+                    <div *ngIf="data.mode=='cliente'">
+                        <div *ngIf="data.reserva.voucher">
+                            <div class="thumbvouche">
+                                <img class="thumbnail-image2" [src]="data.reserva.voucher"  alt="alternative" />
+                            <a class="btn3" [href]="data.reserva.voucher">Ver voucher</a>
+                            </div>
+                        </div>
+                        <div *ngIf="!data.reserva.voucher">
+                            <mat-toolbar>
+                                <div *ngIf="photoSelected">
+                                    <button
+                                class="btn"
+                                  color="primary"
+                                  (click)="sendImage()"
+                                  >
+                                  Enviar imagen
+                                </button>
+                                </div>
+                                <div *ngIf="!photoSelected">
+                                    <button
+                                class="btn"
+                                  color="primary"
+                                  [disabled]="true"
+                                  >
+                                  Imagen Vacía
+                                </button>
+                                </div>
+                            </mat-toolbar>
+                            <input
+                              type="file"
+                              id="fileInput"
+                              name="fileInput"
+                              (change)="onFileSelected($event)" #fileUpload
+                              accept="image/*"/>  
+                             
+                              <img class="thumbnail-image2" [src]="photoSelected || 'assets/images/solidIm.png'"  alt="alternative" />
+                        </div>
+                          
+                    </div>
+                    <div *ngIf="data.reserva.voucher && data.mode!='cliente'">
+                        <img class="thumbnail-image2" [src]="data.reserva.voucher" alt="alternative" />
+
+                        <a class="btn3" [href]="data.reserva.voucher">Ver voucher</a>
+                    </div>
+                    
+                </div>
+               
+            </div>
+
+
+            <div class="habitacion">
+                <div class="hab-div">
+                    <div>
+                        <h1>{{data.reserva.habitacion.nombre}}</h1>
+                        <h3>Capacidad: {{data.reserva.habitacion.capacidad}} personas</h3>
+                        <h3>Categoría: {{data.reserva.habitacion.categoria}}</h3>
+                        <div class="info-r1">
+                            <h3>Piso: {{data.reserva.habitacion.piso}}</h3>
+                            <h3>Bloque: {{data.reserva.habitacion.bloque}}</h3>
+                        </div>
+                    </div>
+                    <img class="thumbnail-image" [src]="data.reserva.habitacion.imagenes[0]" onerror="this.src='assets/images/solidIm.png'"  alt="alternative" />
+                </div>
+                <hr>
+                <div class="invitados">
+                    <mat-accordion>
+                        <mat-expansion-panel >
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              <p>Invitados</p>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <p>{{data.reserva.invitados.length}} personas</p>
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div *ngFor="let invitado of data.reserva.invitados">
+                            <h3>{{invitado.nombreapellido}}: {{invitado.edad}} años (CI: {{invitado.ci}})</h3>
+                          </div>
+                          
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+                <div class="checks">
+                    <h3>Check-In: {{data.reserva.checkIn | date:'shortDate'}} 13:00</h3>
+                    <h3>Check-Out: {{data.reserva.checkOut | date:'shortDate'}} 15:00</h3>
+                    <div *ngIf="data.reserva.servicio">
+                        <h3>Servicio de Limpieza: Si</h3>
+                    </div>
+                    <div *ngIf="!data.reserva.servicio">
+                        <h3>Servicio de Limpieza: No</h3>
+                    </div>
+                    <h3>Precio: {{data.reserva.habitacion.precio * data.reserva.invitados.length}} US.</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+  .title h1{
+    font-family: 'Muli';
+    font-weight: bold;
+     font-size: 95px;
+     padding: 15px;
+  }
+
+
+  .icon-big{
+    width: 70%;
+    height: auto;
+  }
+
+  .center{
+      align-content: center;
+      justify-content: center;
+      display: flex;
+      padding: 10px;
+  }
+  
+  

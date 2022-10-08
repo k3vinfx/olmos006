@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="title">
+        <h1>{{data.habitacion.nombre}}</h1> 
+    </div>
+    <div class="divider">
+       <div class="photos">
+            <div class="carousel-container" *ngIf="data.habitacion.imagenes && data.habitacion.imagenes.length >0">
+                <img *ngFor="let image of data.habitacion.imagenes; let i=index"
+                [src]="image"
+                [ngClass]="{'image-active':selectedIndex===i}"
+                >
+            </div>
+            <div *ngIf="indicators" class="carousel-dot-container">
+                <span *ngFor="let dot of data.habitacion.imagenes; let i=index" class="dot"
+                [ngClass]="{'active':selectedIndex===i}"
+                (click)="selectedImage(i)"></span>
+            </div>
+            <div class="estado">
+                <h2>Estado:</h2>
+                <div class="label-dis">
+                    {{data.habitacion.estado}}
+                </div>
+            </div>
+                       
+       </div>
+
+       <div class="info">
+        <h3>Categoría: {{data.habitacion.categoria}}</h3>
+        <h3>Capacidad: {{data.habitacion.capacidad}} personas</h3>
+        <div class="info-r1">
+            <h3>Piso: {{data.habitacion.piso}}</h3>
+            <h3>Bloque: {{data.habitacion.bloque}}</h3>
+        </div>  
+        <div class="info-r1">
+            <h3>Precio: {{data.habitacion.precio}} US.</h3>
+        </div>
+        <button type="button" (click)="openDialogRes()" *ngIf="data.mode=='cliente' && data.habitacion.estado=='Disponible'" class="btn2">Reservar Habitación</button>
+       </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,36 @@
+<mat-drawer-container class="example-container" autosize [hasBackdrop]="true" (backdropClick)="toggleButton()">
+    <mat-drawer #drawer class="example-sidenav" mode="over" (keydown.escape)="toggleButton()">
+      <div class="top">
+        <img class="icon-big" src="https://firebasestorage.googleapis.com/v0/b/deploy-pasantia.appspot.com/o/hotel%2FLogoHotelIcon_cr.png?alt=media&token=0b3bcee1-45f3-46d1-8bde-8e6dd2b42661" alt="icon-big">
+        <span class="example-spacer"></span>
+        <button *ngIf="!showing" type="button" (click)="drawer.close(); showing=true" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="links">
+        <a mat-button (click)="setRoute('menu-prin'); drawer.toggle() ; showing=true">Reservas y habitaciones</a>
+        <a mat-button (click)="setRoute('data-menu'); drawer.toggle() ; showing=true">Información</a>
+        <a mat-button (click)="onLogout()">Cerrar Sesion</a>
+      </div>
+      <span class="example-spacer"></span>
+  
+      
+  
+    </mat-drawer>
+    <mat-drawer-content>
+      <mat-toolbar>
+        <button *ngIf="showing" type="button" (click)="drawer.toggle(); showing=false" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+         <mat-icon>menu</mat-icon>
+       </button>
+       <span class="example-spacer"></span>
+      </mat-toolbar>
+      <div *ngIf="headRoute=='menu-prin'">
+        <app-menu-prin></app-menu-prin>
+      </div>
+      <div *ngIf="headRoute=='data-menu'">
+        <app-data-menu></app-data-menu>
+      </div>
+
+    </mat-drawer-content>
+  
+  </mat-drawer-container>

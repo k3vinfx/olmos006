@@ -1,0 +1,108 @@
+<div class="content">
+    <div class="container">
+        <div class="bghotel">
+            <div class="form">
+                <div class="center">
+                    <img class="icon-big" src="https://firebasestorage.googleapis.com/v0/b/deploy-pasantia.appspot.com/o/hotel%2FLogoHotelComplete.png?alt=media&token=34caae1a-77d9-4aef-8c05-b5652980c949" alt="icon-big">
+                </div>
+                <div class="center">
+                    <h1>Nuestras instalaciones lo están esperando para su estadía</h1>
+                </div>
+            </div>
+        </div>
+        <div class="infodump">
+            <div class="divider">
+                <div class="photos">
+                     <div class="carousel-container">
+                         <img *ngFor="let image of imagesHab; let i=index"
+                         [src]="image"
+                         [ngClass]="{'image-active':selectedIndex1===i}"
+                         >
+                     </div>
+                     <div *ngIf="indicators1" class="carousel-dot-container">
+                         <span *ngFor="let dot of imagesHab; let i=index" class="dot"
+                         [ngClass]="{'active':selectedIndex1===i}"
+                         (click)="selectedImage1(i)"></span>
+                     </div>
+                   
+                                
+                </div>
+         
+                <div class="info">
+                    <div class="info-r1">
+                        <h1>Habitaciones:</h1>
+                    </div>
+                   
+                 <h2>Bloques A y B. Tres plantas modernas</h2>
+                 <div class="info-r1">
+                     <h3>Piso 1:</h3>
+                     <h3>Monoambiente:</h3>
+                     <h3> Habitación con una cama dos plazas</h3>
+                 </div>  
+                 <div class="info-r1">
+                    <h3>Precio: 40 US</h3>
+                </div>
+
+                 <div class="info-r1">
+                    <h3>Pisos 2 y 3:</h3>
+                    <h3>Ambiente Doble: </h3>
+                    <h3>Dos habitaciones (1 cama dos plazas y 1 cama individual)</h3>
+                </div>  
+                <div class="info-r1">
+                    <h3>Precio: 60 US</h3>
+                </div>
+               
+                    <h2>Living, Comedor, Baño</h2>
+                    <h2>Sala de Estar y Escritorio (Monoambiente)</h2>
+                    <h2>Cocina con refrigerador, vajilla y microondas</h2>
+                    <h2>Wi-Fi</h2>
+                    <h2>TV Cable</h2>
+                </div>
+            </div>
+
+
+             <div class="divider">
+                <div class="photos">
+                     <div class="carousel-container">
+                         <img *ngFor="let image of imagesExt; let i=index"
+                         [src]="image"
+                         [ngClass]="{'image-active':selectedIndex2===i}"
+                         >
+                     </div>
+                     <div *ngIf="indicators2" class="carousel-dot-container">
+                         <span *ngFor="let dot of imagesExt; let i=index" class="dot"
+                         [ngClass]="{'active':selectedIndex2===i}"
+                         (click)="selectedImage2(i)"></span>
+                     </div>                 
+                </div>
+         
+                <div class="info">
+                    <div class="info-r1">
+                        <h1>Sectores comunes:</h1>
+                    </div>
+                   <div class="info-r2">
+                    <h3>Parrilleros</h3>
+                    <h3>Cafetería</h3>
+                    <h3>Bar</h3>
+                    <h3>Cuarto de lavandería</h3>
+                    <h3>Jardines</h3>
+                   </div> 
+                
+                </div>
+             </div>
+        </div>
+
+        <div class="direct">
+            <div class="info-r3">
+                <h2>Av. José Aguirre Acha #-100, entre calles 31 y 32. </h2>
+            <h2>Teléfonos: 77774601</h2>
+            <h2>La Paz, Bolivia</h2>
+            </div>
+            
+        </div>
+
+
+        
+    </div>
+
+</div>
